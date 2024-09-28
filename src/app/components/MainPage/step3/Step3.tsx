@@ -1,18 +1,18 @@
+'use client';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation'; // Importowanie useRouter
 import Button from '../../Button/Button';
 import CheckboxOption from '../../CheckboxOption/CheckboxOption';
-
 import styles from './Step3.module.scss';
 import SetUpStepper from '../../SetUpStepper/SetUpStepper';
 import Header from '../../Header/Header';
 
-interface Step3Props {
-  onNext: () => void;
-}
+interface Step3Props {}
 
-const Step3: React.FC<Step3Props> = ({ onNext }) => {
+const Step3: React.FC<Step3Props> = () => {
   const [budget, setBudget] = useState<string>('50');
   const [preferences, setPreferences] = useState<string[]>([]);
+  const router = useRouter(); // Inicjalizacja routera
 
   const handleBudgetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBudget(event.target.value);
@@ -26,11 +26,13 @@ const Step3: React.FC<Step3Props> = ({ onNext }) => {
     );
   };
 
+  const onNext = () => {
+    router.push('/game'); // Przeniesienie użytkownika do ścieżki "/games"
+  };
+
   return (
     <div className={styles.step3Container}>
-      <Header location={'Sosnowiec'} onChangeLocation={function (): void {
-        throw new Error('Function not implemented.');
-      } } />
+      <Header location={'Kraków'} onChangeLocation={() => console.log('Change location')} />
       <h2>Zostało kilka konkretów:</h2>
 
       {/* Budżet */}
@@ -67,12 +69,12 @@ const Step3: React.FC<Step3Props> = ({ onNext }) => {
         onChange={handleCheckboxChange}
       />
 
-
-<SetUpStepper progress={100} label="Setup: 3 z 3 kroków" />
-
-      <Button onClick={onNext} variant="primary">
-        Let's goooooooo
-      </Button>
+      <SetUpStepper progress={100} label="Setup: 3 z 3 kroków" />
+      <div className={styles.button}>
+        <Button onClick={onNext} variant="primary">
+          Let's goooooooo
+        </Button>
+      </div>
     </div>
   );
 };

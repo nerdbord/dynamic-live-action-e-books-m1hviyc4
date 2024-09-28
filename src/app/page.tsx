@@ -49,7 +49,6 @@ export default function Home(): JSX.Element {
       <Button
         onClick={handleReset}
         variant="secondary"
-       className="reset-button"
       >
         Reset
       </Button>

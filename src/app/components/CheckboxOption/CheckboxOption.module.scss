@@ -8,8 +8,11 @@
     cursor: pointer;
   
     input {
-      margin-right: 10px;
+      display: flex;
+      justify-content: right;
+      margin-left: auto;
       accent-color: #000;
+     
     }
   
     .optionLabel {

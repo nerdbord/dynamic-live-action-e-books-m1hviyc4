@@ -20,7 +20,7 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
 
   return (
     <div className={styles.stepContainer}>
-      <Header location="Sosnowiec" onChangeLocation={handleLocationChange} />
+      <Header location={'Kraków '} onChangeLocation={handleLocationChange} />
 
       <h2>Ile Lemurów, wariacie?</h2>
       <p>Kogo zabierasz w tour ze sobą?</p>
