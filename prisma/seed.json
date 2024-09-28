@@ -1,0 +1,11 @@
+[
+    {
+      "name": "Lemurek",
+      "email": "lemur@lemur.com",
+      "password": "lemur123",
+      "tasks": 10,
+      "adventures": 2,
+      "experience": 1200
+    }
+  ]
+  
