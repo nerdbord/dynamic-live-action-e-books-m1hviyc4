@@ -1,7 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 import Button from '../../Button/Button';
-import Image from 'next/image';
+import SetUpStepper from '../../SetUpStepper/SetUpStepper';
+import Header from '../../Header/Header';
 import styles from './Step1.module.scss';
 
 interface Step1Props {
@@ -13,16 +14,13 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
   const [babyLemurs, setBabyLemurs] = useState(0);
   const [selectedLemur, setSelectedLemur] = useState('Lemur naczelny (ja)');
 
+  const handleLocationChange = () => {
+    console.log('Change location');
+  };
+
   return (
     <div className={styles.stepContainer}>
-      <header className={styles.header}>
-        <div className={styles.tourInfo}>
-          <span>Tour de <strong>Sosnowiec</strong></span>
-          <Button onClick={() => console.log("Change")} variant="secondary">
-            Zmień
-          </Button>
-        </div>
-      </header>
+      <Header location="Sosnowiec" onChangeLocation={handleLocationChange} />
 
       <h2>Ile Lemurów, wariacie?</h2>
       <p>Kogo zabierasz w tour ze sobą?</p>
@@ -78,10 +76,7 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
         </div>
       </div>
 
-      <div className={styles.progress}>
-        <div className={styles.progressBar} style={{ width: '33%' }}></div>
-        <span>Setup: 1 z 3 kroków</span>
-      </div>
+      <SetUpStepper progress={33} label="Setup: 1 z 3 kroków" />
 
       <Button onClick={onNext} variant="primary">Wybierz tam zadani itd</Button>
     </div>

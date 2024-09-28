@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 24px;
+    border: 1px solid black;
+  }
+  
+  .tourInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      font-weight: bold;
+    }
+  
+    button {
+      margin-left: 8px;
+    }
+  }
+  
