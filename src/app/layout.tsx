@@ -35,9 +35,7 @@ export default function RootLayout({
                         h-screen w-screen 
                         md:h-[652px] md:w-[393px] lg:mx-auto"
         >
-          <GoogleApiProvider>
           {children}
-          </GoogleApiProvider>
         </div>
       </body>
     </html>
