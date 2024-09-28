@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+<<<<<<< HEAD
 import localFont from "next/font/local";
 import "./globals.css";
 import { APIProvider } from "@vis.gl/react-google-maps";
@@ -14,6 +15,9 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+=======
+import "./globals.scss";
+>>>>>>> fd8d1f30f0c13a115ddc58ad1db541d79101911b
 
 export const metadata: Metadata = {
   title: "AI Tour Guide",
@@ -28,13 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.className} ${geistMono.className} flex justify-center items-start`}
       >
         <div
-          className="flex flex-col justify-between bg-gray-900 
-                        h-screen w-screen 
-                        md:h-[652px] md:w-[393px] lg:mx-auto"
-        >
+         >
           {children}
         </div>
       </body>
