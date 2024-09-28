@@ -2,22 +2,24 @@ import React from 'react';
 import styles from './Button.module.scss';
 
 type ButtonProps = {
-  onClick: () => void;
+  onClick?: () => void;
   children: React.ReactNode;
   variant?: 'primary' | 'secondary';
-  type?: 'button' | 'submit';
   className?: string;
+  type?: 'button' | 'submit';
 };
 
-const Button: React.FC<ButtonProps> = ({ 
-  onClick, 
-  children, 
-  variant = 'primary', 
-  className 
+const Button: React.FC<ButtonProps> = ({
+  onClick,
+  children,
+  variant = 'primary',
+  className = '',
+  type = 'button',
 }) => {
   return (
     <button
-      className={`${styles.btn} ${variant === 'primary' ? styles['btn-primary'] : styles['btn-secondary']} ${className}`}
+      type={type}
+      className={`${styles.btn} ${variant === 'primary' ? styles.primary : styles.secondary} ${className}`}
       onClick={onClick}
     >
       {children}
