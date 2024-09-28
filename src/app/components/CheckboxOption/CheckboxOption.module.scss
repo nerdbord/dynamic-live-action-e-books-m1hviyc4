@@ -1,0 +1,28 @@
+.option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  
+    input {
+      margin-right: 10px;
+      accent-color: #000;
+    }
+  
+    .optionLabel {
+      font-size: 16px;
+    }
+  
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  
+    input:checked + .optionLabel {
+      background-color: #e6e6e6;
+      border-radius: 8px;
+    }
+  }
+  
