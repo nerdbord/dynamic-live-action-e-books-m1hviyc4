@@ -1,7 +1,7 @@
+
 import React, { useState } from 'react';
 import Button from '../../Button/Button';
 import CheckboxOption from '../../CheckboxOption/CheckboxOption';
-
 import styles from './Step3.module.scss';
 import SetUpStepper from '../../SetUpStepper/SetUpStepper';
 import Header from '../../Header/Header';

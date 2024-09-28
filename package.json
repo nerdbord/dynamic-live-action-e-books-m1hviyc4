@@ -10,33 +10,23 @@
     "prisma:seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@react-google-maps/api": "^2.19.3",
     "@vis.gl/react-google-maps": "^1.2.0",
-=======
     "@prisma/client": "^5.20.0",
->>>>>>> fd8d1f30f0c13a115ddc58ad1db541d79101911b
     "next": "14.2.13",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@types/google.maps": "^3.58.1",
-=======
->>>>>>> fd8d1f30f0c13a115ddc58ad1db541d79101911b
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.13",
     "postcss": "^8",
-<<<<<<< HEAD
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
-=======
+    "typescript": "^5",
     "prisma": "^5.20.0",
     "tailwindcss": "^3.4.1"
->>>>>>> fd8d1f30f0c13a115ddc58ad1db541d79101911b
   }
 }

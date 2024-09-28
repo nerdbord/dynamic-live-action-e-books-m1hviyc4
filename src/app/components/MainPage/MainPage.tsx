@@ -3,6 +3,8 @@ import React from 'react';
 import Button from '../Button/Button';
 import Image from 'next/image';
 import styles from './MainPage.module.scss';
+import MapComponent from '../MapComponent/MapComponent';
+import { APIProvider } from '@vis.gl/react-google-maps';
 
 interface MainPageProps {
   onStart: () => void;
@@ -12,6 +14,7 @@ interface MainPageProps {
 const MainPage: React.FC<MainPageProps> = ({ onStart, onViewPreviousTours }) => {
   return (
     <div className="app-container">
+
       <header className={styles.profileHeader}>
         <div className={styles.profileIcon}>
           <Image src="/Media.png" alt="Profile Icon" width={117} height={117} />
@@ -45,7 +48,9 @@ const MainPage: React.FC<MainPageProps> = ({ onStart, onViewPreviousTours }) => 
 
       <div className={styles.locationContainer}>
         <div className={styles.locationImage}>
-          <Image src="/Media(2).png" alt="Profile Icon" width={343} height={143} />
+        <APIProvider apiKey={"AIzaSyCvvlLvJ8yDgKup6hw6jPtHn3JGWJdS6sQ"}>
+        <MapComponent />
+      </APIProvider>
         </div>
         <p>Jesteś teraz w: <strong>Sosnowcu</strong></p>
         <Button onClick={onStart} variant="primary">Zaczynamy Tour</Button>
