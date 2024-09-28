@@ -1,12 +1,14 @@
+"use client";
+
+import { APIProvider, APIProviderContext, useApiIsLoaded } from "@vis.gl/react-google-maps";
 import MapComponent from "../components/MapComponent";
-import GoogleApiProvider from "../providers/GoogleApiProvider";
 
 export default function Map() {
   return (
     <main>
-      <GoogleApiProvider>
+      <APIProvider apiKey={"AIzaSyCvvlLvJ8yDgKup6hw6jPtHn3JGWJdS6sQ"}>
         <MapComponent />
-      </GoogleApiProvider>
+      </APIProvider>
     </main>
   );
 }
