@@ -29,8 +29,8 @@ export default function RootLayout({
         className={`${geistSans.className} ${geistMono.className} flex justify-center items-start`}
       >
         <div
-          className="flex flex-col justify-between bg-gray-900 
-                        h-screen w-screen 
+          className="flex flex-col justify-between bg-white
+                        h-screen w-screen border
                         md:h-[652px] md:w-[393px] lg:mx-auto"
         >
           {children}

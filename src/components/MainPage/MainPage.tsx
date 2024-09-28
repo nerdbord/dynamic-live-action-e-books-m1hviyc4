@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import Button from '../components/Button/Button';
+import Button from '../Button/Button';
 
  const App: React.FC = () => {
   const handleClick = () => {
