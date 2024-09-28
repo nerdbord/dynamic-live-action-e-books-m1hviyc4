@@ -1,5 +1,23 @@
 import type { Metadata } from "next";
+<<<<<<< HEAD
+import localFont from "next/font/local";
+import "./globals.css";
+import { APIProvider } from "@vis.gl/react-google-maps";
+import GoogleApiProvider from "./providers/GoogleApiProvider";
+
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+});
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+});
+=======
 import "./globals.scss";
+>>>>>>> fd8d1f30f0c13a115ddc58ad1db541d79101911b
 
 export const metadata: Metadata = {
   title: "AI Tour Guide",
