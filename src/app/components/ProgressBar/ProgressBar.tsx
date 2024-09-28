@@ -10,7 +10,7 @@ interface ProgressBarProps {
 const ProgressBar: React.FC<ProgressBarProps> = ({ progress, location, onExit }) => {
   return (
     <div className={styles.progressBar}>
-      <img src="/logo.png" alt="Logo" className={styles.logo} />
+      <img src="/Media.png" alt="Logo" className={styles.logo} />
       <div className={styles.info}>
         <span className={styles.tourText}>Tour de <strong>{location}</strong></span>
         <div className={styles.progressContainer}>
