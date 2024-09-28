@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Button from '../../Button/Button';
 import CheckboxOption from '../../CheckboxOption/CheckboxOption';
-// import SetupStepper from '../../SetupStepper/SetupStepper';
+
 import styles from './Step3.module.scss';
+import SetUpStepper from '../../SetUpStepper/SetUpStepper';
+import Header from '../../Header/Header';
 
 interface Step3Props {
   onNext: () => void;
@@ -26,6 +28,9 @@ const Step3: React.FC<Step3Props> = ({ onNext }) => {
 
   return (
     <div className={styles.step3Container}>
+      <Header location={'Sosnowiec'} onChangeLocation={function (): void {
+        throw new Error('Function not implemented.');
+      } } />
       <h2>Zostało kilka konkretów:</h2>
 
       {/* Budżet */}
@@ -62,8 +67,8 @@ const Step3: React.FC<Step3Props> = ({ onNext }) => {
         onChange={handleCheckboxChange}
       />
 
-      {/* SetupStepper */}
-      {/* <SetupStepper currentStep={3} totalSteps={3} /> */}
+
+<SetUpStepper progress={100} label="Setup: 3 z 3 kroków" />
 
       <Button onClick={onNext} variant="primary">
         Let's goooooooo
