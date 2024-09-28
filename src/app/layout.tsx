@@ -28,7 +28,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.className} ${geistMono.className}`}
       >
-        <div className="root-layout">
+        <div
+          className="flex flex-col justify-between bg-white
+                        h-screen w-screen border
+                        md:h-[652px] md:w-[393px] lg:mx-auto"
+        >
           {children}
         </div>
       </body>
