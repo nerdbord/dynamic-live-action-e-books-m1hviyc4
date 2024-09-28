@@ -20,7 +20,7 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
 
   return (
     <div className={styles.stepContainer}>
-      <Header location="Sosnowiec" onChangeLocation={handleLocationChange} />
+      <Header location={'Kraków '} onChangeLocation={handleLocationChange} />
 
       <h2>Ile Lemurów, wariacie?</h2>
       <p>Kogo zabierasz w tour ze sobą?</p>
@@ -78,7 +78,7 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
 
       <SetUpStepper progress={33} label="Setup: 1 z 3 kroków" />
 
-      <Button onClick={onNext} variant="primary">Wybierz tam zadani itd</Button>
+      <Button onClick={onNext} variant="primary">Wybierz tam zadanie</Button>
     </div>
   );
 };

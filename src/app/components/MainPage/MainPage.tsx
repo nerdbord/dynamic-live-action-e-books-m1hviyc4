@@ -13,18 +13,18 @@ interface MainPageProps {
 
 const MainPage: React.FC<MainPageProps> = ({ onStart, onViewPreviousTours }) => {
   return (
-    <div className="app-container">
+    <div className={styles.appContainer}>
 
       <header className={styles.profileHeader}>
         <div className={styles.profileIcon}>
-          <Image src="/Media.png" alt="Profile Icon" width={117} height={117} />
+          <Image src="/Lemur.png" alt="Profile Icon" width={117} height={117} />
         </div>
         <h2>Level: Novice</h2>
       </header>
 
       <div className={styles.statContainer}>
         <div className={styles.stats}>
-          <div>
+          <div className={styles.statsSpec}>
             <h3>1</h3>
             <p>Przygód</p>
           </div>
@@ -36,13 +36,6 @@ const MainPage: React.FC<MainPageProps> = ({ onStart, onViewPreviousTours }) => 
             <h3>452</h3>
             <p>EXP</p>
           </div>
-          <div>
-            <h3>4</h3>
-            <p>Ranking</p>
-          </div>
-        </div>
-        <div className={styles.button}>
-          <Button onClick={onViewPreviousTours} variant="secondary">Poprzednie Tours</Button>
         </div>
       </div>
 
@@ -52,7 +45,7 @@ const MainPage: React.FC<MainPageProps> = ({ onStart, onViewPreviousTours }) => 
         <MapComponent />
       </APIProvider>
         </div>
-        <p>Jesteś teraz w: <strong>Sosnowcu</strong></p>
+        <p>Jesteś teraz w: <strong>Krakowie</strong></p>
         <Button onClick={onStart} variant="primary">Zaczynamy Tour</Button>
       </div>
     </div>
