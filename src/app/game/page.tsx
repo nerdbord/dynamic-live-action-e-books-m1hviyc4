@@ -6,19 +6,20 @@ import Map from '../components/Map/Map';
 import InfoBoxes from '../components/InfoBoxes/InfoBoxes';
 import StatsBox from '../components/StatsBox/StatsBox';
 import ReminderButton from '../components/ReminderButton/ReminderButton';
+import Button from '../components/Button/Button';
+import styles from './page.module.scss';
 
 export default function Home() {
+  const [tourStarted, setTourStarted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [location, setLocation] = useState('Pobieranie lokalizacji...');
 
-  // Dane dla InfoBoxes
   const data = [
     { value: 1, label: 'Lemur', unit: '' },
     { value: 3, label: 'godz', unit: '' },
     { value: 50, label: 'pln', unit: '' },
   ];
 
-  // Dane dla StatsBox
   const stats = [
     { value: 6, label: 'Zadań' },
     { value: '4km', label: 'Podróży' },
@@ -45,6 +46,10 @@ export default function Home() {
     setLocation('Sosnowiec');
   }, []);
 
+  const handleStartTour = () => {
+    setTourStarted(true);
+  };
+
   const goBack = () => {
     console.log('Powrót');
   };
@@ -52,11 +57,37 @@ export default function Home() {
   return (
     <main>
       <Container>
-        <ProgressBar progress={progress} location={location} onExit={goBack} />
-        <Map />
-        <InfoBoxes data={data} onEdit={handleEdit} />
-        <StatsBox stats={stats} />
-        <ReminderButton />
+        {!tourStarted ? (
+          <>
+            <ProgressBar progress={progress} location={location} onExit={goBack} />
+            <Map />
+            <InfoBoxes data={data} onEdit={handleEdit} />
+            <StatsBox stats={stats} />
+            <ReminderButton />
+            <Button onClick={handleStartTour} variant="primary">
+              Zaczynamy Tour
+            </Button>
+          </>
+        ) : (
+          <>
+            {/* Nowy widok, który jest widoczny po prawej stronie na zrzucie ekranu */}
+            <ProgressBar progress={progress} location={location} onExit={goBack} />
+            <div className={styles.tourHeader}>
+              <Button onClick={() => console.log('Wyjdź')} variant="secondary">Wyjdź</Button>
+              <Button onClick={() => console.log('Otwórz transkrypcję')} variant="secondary">
+                Otwórz transkrypcję
+              </Button>
+            </div>
+            <Map />
+            <div className={styles.tourStep}>
+              <h3>SPACEREK NA RYNACZEK</h3>
+              <p>Przejdź do [miejsce] [X] m.</p>
+              <Button onClick={() => console.log('Następny krok')} variant="primary">
+                Następny krok
+              </Button>
+            </div>
+          </>
+        )}
       </Container>
     </main>
   );
