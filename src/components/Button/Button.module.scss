@@ -1,0 +1,22 @@
+.btn {
+    display: flex;
+    width: 347px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .btn-primary {
+    border-radius: 2px;
+    height: 40px;
+    padding: 12px 24px;
+    background: var(--Black, #000);
+  }
+  
+  .btn-secondary {
+    height: 32px;
+    background-color: #6c757d;
+    padding: 8px 12px;
+    color: white;
+  }
