@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { APIProvider } from "@vis.gl/react-google-maps";
+import GoogleApiProvider from "./providers/GoogleApiProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,7 +35,9 @@ export default function RootLayout({
                         h-screen w-screen 
                         md:h-[652px] md:w-[393px] lg:mx-auto"
         >
+          <GoogleApiProvider>
           {children}
+          </GoogleApiProvider>
         </div>
       </body>
     </html>
