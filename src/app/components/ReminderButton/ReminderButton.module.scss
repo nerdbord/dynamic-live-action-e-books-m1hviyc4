@@ -1,0 +1,27 @@
+.reminderButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: white;
+    max-width: 400px;
+    margin: 20px auto;
+  
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+  
+  .icon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .text {
+    font-weight: 500;
+  }
+  
