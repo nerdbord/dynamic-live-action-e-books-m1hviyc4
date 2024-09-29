@@ -19,9 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={instrumentSans.className}>
-        <div>{children}</div>
-      </body>
+      <body className={instrumentSans.className}>{children}</body>
     </html>
   )
 }

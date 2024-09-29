@@ -1,8 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import Button from '../../Button/Button'
 import SetUpStepper from '../../SetUpStepper/SetUpStepper'
-import Header from '../../Header/Header'
 import styles from './Step1.module.scss'
 import { EditIcon } from './EditIcon'
 import Image from 'next/image'
@@ -18,7 +16,6 @@ const Step1: React.FC<Step1Props> = ({ onNext, handleReset }) => {
 
   return (
     <div className={styles.stepContainer}>
-      {/* <Header location={'Kraków '} onChangeLocation={handleLocationChange} /> */}
       <div className={styles.header}>
         <p className={styles.tourInfo}>
           Tour de

@@ -37,7 +37,9 @@ export default function Home(): JSX.Element {
           <Step1 onNext={() => handleSetStep(2)} handleReset={handleReset} />
         )
       case 2:
-        return <Step2 onNext={() => handleSetStep(3)} />
+        return (
+          <Step2 onNext={() => handleSetStep(3)} handleReset={handleReset} />
+        )
       case 3:
         return <Step3 onNext={() => handleSetStep(0)} />
       default:
@@ -51,11 +53,11 @@ export default function Home(): JSX.Element {
   }
 
   return (
-    <main style={{ position: 'relative' }}>
+    <>
       {renderContent()}
       <Button onClick={handleReset} variant="secondary">
         Reset
       </Button>
-    </main>
+    </>
   )
 }
