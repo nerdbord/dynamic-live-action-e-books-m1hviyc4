@@ -1,5 +1,5 @@
 'use server'
-import { AudioPlayer } from './AudioPlayer'
+import { AudioPlayer } from '../components/AudioPlayer/AudioPlayer'
 
 export default async function Home() {
   const elevenLabsKey = process.env.ELEVENLABS_API_KEY || ''

@@ -1,0 +1,72 @@
+.audioPlayer {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.controlButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  padding: 8px;
+  background-color: white;
+}
+
+.recordDot {
+  width: 11px;
+  height: 11px;
+  background: #64748b;
+  border-radius: 100%;
+}
+.recordDot.active {
+  background: #fe6363;
+  box-shadow: 0px 0px 14px #fd625f;
+}
+
+.liveControl {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #64748b;
+  font-size: 12px;
+  font-family: Instrument Sans;
+  font-weight: 600;
+  line-height: 16px;
+  word-break: keep-all;
+}
+.liveControl.active {
+  color: #fe6363;
+}
+
+.backButton,
+.forwardButton {
+}
+
+.playPauseButton {
+}
+
+.playPauseButton:hover {
+}
+
+.timeControl {
+  display: none;
+  align-items: center;
+}
+
+.timeDisplay {
+  margin: 0 0.5rem;
+}
+
+.timeSlider {
+  flex-grow: 1;
+}

@@ -2,7 +2,11 @@
 // AudioStream.tsx
 import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
+import styles from './AudioPlayer.module.scss'
 
+import { ForwardIcon } from './ForwardIcon'
+import { BackIcon } from './BackIcon'
+import { PauseIcon } from './PauseIcon'
 interface VoiceSettings {
   stability: number
   similarity_boost: number
@@ -28,22 +32,17 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const [isPlaying, setIsPlaying] = useState(false)
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
-  const [volume, setVolume] = useState(1)
 
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
-
     const setAudioData = () => {
       setDuration(audio.duration)
       setCurrentTime(audio.currentTime)
     }
-
     const setAudioTime = () => setCurrentTime(audio.currentTime)
-
     audio.addEventListener('loadeddata', setAudioData)
     audio.addEventListener('timeupdate', setAudioTime)
-
     return () => {
       audio.removeEventListener('loadeddata', setAudioData)
       audio.removeEventListener('timeupdate', setAudioTime)
@@ -62,15 +61,6 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     setIsPlaying(!isPlaying)
   }
 
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    const newVolume = parseFloat(e.target.value)
-    audio.volume = newVolume
-    setVolume(newVolume)
-  }
-
   const handleTimeUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audio = audioRef.current
     if (!audio) return
@@ -78,6 +68,37 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     const time = parseFloat(e.target.value)
     audio.currentTime = time
     setCurrentTime(time)
+  }
+
+  const handleTimeSubtract = () => {
+    setIsPlaying(false)
+    const audio = audioRef.current
+
+    if (!audio) return
+    setIsPlaying(false)
+    audio.pause()
+
+    const newTime = Math.max(currentTime - 10, 0)
+    audio.currentTime = newTime
+    setCurrentTime(newTime)
+
+    setIsPlaying(true)
+    audio.play()
+  }
+  const handleTimeAdd = () => {
+    setIsPlaying(false)
+    const audio = audioRef.current
+
+    if (!audio) return
+    setIsPlaying(false)
+    audio.pause()
+
+    const newTime = Math.max(currentTime + 10, 0)
+    audio.currentTime = newTime
+    setCurrentTime(newTime)
+
+    setIsPlaying(true)
+    audio.play()
   }
 
   const formatTime = (time: number) => {
@@ -125,44 +146,54 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
   return (
     <div>
-      <button onClick={startStreaming} disabled={loading}>
+      <button
+        onClick={startStreaming}
+        disabled={loading}
+        className={styles.startGenre}
+      >
         Start Generate
       </button>
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
 
-      <div className="bg-gray-100 p-4 rounded-lg shadow-md">
+      <div className={styles.audioPlayer}>
+        <div className={`${styles.liveControl} ${isPlaying && styles.active}`}>
+          <div
+            className={`${styles.recordDot} ${isPlaying && styles.active}`}
+          ></div>
+          <p>LIVE AUDIO GUIDE</p>
+        </div>
         <audio ref={audioRef} src={audioState} />
-        <div className="flex items-center justify-between mb-4">
+        <div className={styles.controls}>
+          <button
+            className={`${styles.controlButton} ${styles.controlButton}`}
+            onClick={handleTimeSubtract}
+          >
+            <BackIcon />
+          </button>
           <button
             onClick={togglePlayPause}
-            className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition-colors"
+            className={`${styles.controlButton} ${styles.playPauseButton}`}
           >
-            {isPlaying ? 'Pause' : 'Play'}
+            {isPlaying ? <PauseIcon /> : <PauseIcon />}
           </button>
-          <div className="flex items-center">
-            <span className="mr-2">Volume</span>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value={volume}
-              onChange={handleVolumeChange}
-              className="w-24"
-            />
-          </div>
+          <button
+            className={`${styles.controlButton} ${styles.forwardButton}`}
+            onClick={handleTimeAdd}
+          >
+            <ForwardIcon />
+          </button>
         </div>
-        <div className="flex items-center">
-          <span className="mr-2">{formatTime(currentTime)}</span>
+        <div className={styles.timeControl}>
+          <span className={styles.timeDisplay}>{formatTime(currentTime)}</span>
           <input
             type="range"
             min="0"
             max={duration}
             value={currentTime}
             onChange={handleTimeUpdate}
-            className="flex-grow"
+            className="time-slider"
           />
-          <span className="ml-2">{formatTime(duration)}</span>
+          <span className={styles.timeDisplay}>{formatTime(duration)}</span>
         </div>
       </div>
 
