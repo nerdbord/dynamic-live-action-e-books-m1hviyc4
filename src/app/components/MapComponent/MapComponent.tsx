@@ -1,9 +1,5 @@
 "use client";
-import {
-  Map,
-  useMap,
-  useMapsLibrary,
-} from "@vis.gl/react-google-maps";
+import { Map, useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
 import { useEffect, useState } from "react";
 import Directions from "../Directions/Directions";
 
@@ -27,7 +23,7 @@ function MapComponent() {
         setPlacesList(results);
 
         const bounds = new window.google.maps.LatLngBounds();
-        results?.forEach((place) => {
+        results.forEach((place) => {
           if (place.geometry?.location) {
             bounds.extend(place.geometry.location);
           }
@@ -50,7 +46,9 @@ function MapComponent() {
       gestureHandling={"greedy"}
       disableDefaultUI={true}
     >
-      {/* {placesList.length>0 && <Directions places={placesList.slice(0, 6)} />} */}
+      {placesList && placesList.length > 0 && (
+        <Directions places={placesList.slice(0, 6)} />
+      )}
     </Map>
   );
 }
