@@ -4,8 +4,9 @@
     align-items: center;
     color: black;
     max-width: 393px;
-    margin: auto;
-  
+    margin-top: 20px;
+    
+
     @media (min-width: 768px) {
       border-radius: 8px;
     }
@@ -103,5 +104,19 @@
     .button {
       margin-top: 8px;
     }
+  }
+  
+  .cityInputContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px; 
+  }
+  
+  .cityInput {
+    border: 1px solid #000; 
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 16px;
   }
   

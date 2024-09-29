@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../Button/Button';
 import Image from 'next/image';
 import styles from './MainPage.module.scss';
@@ -12,9 +12,19 @@ interface MainPageProps {
 }
 
 const MainPage: React.FC<MainPageProps> = ({ onStart, onViewPreviousTours }) => {
+  const [city, setCity] = useState<string>('Krakow');
+  const [street, setStreet] = useState<string>('ul. Rakowiecka');
+
+  const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCity(event.target.value);
+  };
+
+  const handleStreetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setStreet(event.target.value);
+  };
+
   return (
     <div className={styles.appContainer}>
-
       <header className={styles.profileHeader}>
         <div className={styles.profileIcon}>
           <Image src="/Lemur.png" alt="Profile Icon" width={117} height={117} />
@@ -41,11 +51,32 @@ const MainPage: React.FC<MainPageProps> = ({ onStart, onViewPreviousTours }) => 
 
       <div className={styles.locationContainer}>
         <div className={styles.locationImage}>
-        <APIProvider apiKey={"AIzaSyCvvlLvJ8yDgKup6hw6jPtHn3JGWJdS6sQ"}>
-        <MapComponent />
-      </APIProvider>
+          <APIProvider apiKey={"AIzaSyCvvlLvJ8yDgKup6hw6jPtHn3JGWJdS6sQ"}>
+            <MapComponent />
+          </APIProvider>
         </div>
-        <p>Jesteś teraz w: <strong>Krakowie</strong></p>
+
+        <div className={styles.cityInputContainer}>
+          <label>Jesteś teraz w mieście:</label>
+          <input
+            type="text"
+            id="city"
+            value={city}
+            onChange={handleCityChange}
+            className={styles.cityInput}
+          />
+        </div>
+        <div className={styles.cityInputContainer}>
+          <label>Przy adresie:</label>
+          <input
+            type="text"
+            id="street"
+            value={street}
+            onChange={handleStreetChange}
+            className={styles.cityInput}
+          />
+        </div>
+
         <Button onClick={onStart} variant="primary">Zaczynamy Tour</Button>
       </div>
     </div>
