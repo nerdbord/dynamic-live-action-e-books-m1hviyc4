@@ -1,7 +1,6 @@
 "use client";
 import {
   Map,
-  Marker,
   useMap,
   useMapsLibrary,
 } from "@vis.gl/react-google-maps";
@@ -9,7 +8,7 @@ import { useEffect, useState } from "react";
 import Directions from "../Directions/Directions";
 
 function MapComponent() {
-  const [placesList, setPlacesList] = useState([]);
+  const [placesList, setPlacesList] = useState<google.maps.places.PlaceResult[] | null>(null);
   const map = useMap();
   const placesLib = useMapsLibrary("places");
 
@@ -24,10 +23,9 @@ function MapComponent() {
 
     const svc = new placesLib.PlacesService(map);
     svc.nearbySearch(request, (results, status) => {
-      if (status === placesLib.PlacesServiceStatus.OK) {
+      if (status === placesLib.PlacesServiceStatus.OK && results) {
         setPlacesList(results);
 
-        // Automatyczne dostosowanie mapy, aby obejmowała wszystkie miejsca
         const bounds = new window.google.maps.LatLngBounds();
         results?.forEach((place) => {
           if (place.geometry?.location) {
@@ -36,6 +34,8 @@ function MapComponent() {
         });
 
         map.fitBounds(bounds);
+      } else {
+        setPlacesList([]);
       }
     });
   }, [placesLib, map]);

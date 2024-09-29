@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation' // Importowanie useRouter
-import Button from '../../Button/Button'
 import CheckboxOption from '../../CheckboxOption/CheckboxOption'
 import styles from './Step3.module.scss'
 import SetUpStepper from '../../SetUpStepper/SetUpStepper'
@@ -11,13 +10,8 @@ interface Step3Props {
 }
 
 const Step3: React.FC<Step3Props> = ({ handleReset }) => {
-  const [budget, setBudget] = useState<string>('50')
   const [preferences, setPreferences] = useState<string[]>([])
   const router = useRouter() // Inicjalizacja routera
-
-  const handleBudgetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setBudget(event.target.value)
-  }
 
   const handleCheckboxChange = (value: string) => {
     setPreferences((prev) =>
