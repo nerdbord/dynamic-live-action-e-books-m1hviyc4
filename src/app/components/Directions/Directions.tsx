@@ -73,7 +73,7 @@ function Directions(props: DirectionsProps) {
 
   return (
     <div className="directions">
-      <h2>{selected?.summary}</h2>
+      {/* <h2>{selected?.summary}</h2>
       <p>
         {leg.start_address?.split(",")[0]} to {leg.end_address?.split(",")[0]}
       </p>
@@ -89,7 +89,7 @@ function Directions(props: DirectionsProps) {
             </button>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }
