@@ -55,9 +55,7 @@ const MainPage: React.FC<MainPageProps> = ({
 
       <div className={styles.locationContainer}>
         <div className={styles.locationImage}>
-          <APIProvider apiKey={'AIzaSyCvvlLvJ8yDgKup6hw6jPtHn3JGWJdS6sQ'}>
             <MapComponent />
-          </APIProvider>
         </div>
 
         <div className={styles.cityInputContainer}>
