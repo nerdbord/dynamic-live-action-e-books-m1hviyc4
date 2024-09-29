@@ -10,7 +10,7 @@ const SetUpStepper: React.FC<SetUpStepperProps> = ({ progress, label }) => {
   return (
     <div className={styles.stepperContainer}>
       <div className={styles.stepperBar} style={{ width: `${progress}%` }}></div>
-      <span className={styles.label}>{label}</span>
+      <div className={styles.label}>{label}</div>
     </div>
   );
 };

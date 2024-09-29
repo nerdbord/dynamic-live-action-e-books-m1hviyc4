@@ -60,7 +60,7 @@ const Step3: React.FC = () => {
         onChange={handleCheckboxChange}
       />
 
-      <SetUpStepper progress={100} label="Setup: 3 z 3 kroków" />
+      <SetUpStepper progress={100} label="3 z 3 kroków" />
       <button onClick={onNext} className={styles.nextButton}>
         Let’s goooooooo
       </button>

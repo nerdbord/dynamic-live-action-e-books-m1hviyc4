@@ -45,7 +45,7 @@ export default function Home() {
     const calculatedProgress = (completedTasks / totalTasks) * 100;
     setProgress(calculatedProgress);
 
-    setLocation("Sosnowiec");
+    setLocation("Kraków");
   }, []);
 
   const handleStartTour = () => {
