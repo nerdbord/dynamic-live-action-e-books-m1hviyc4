@@ -4,27 +4,32 @@
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
+    margin-top: 20px;
   }
   
   .box {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid black;
-    padding: 20px;
-    border-radius: 8px;
-    min-width: 100px;
-    text-align: center;
+    justify-content: center;
+    width: 82px;
+    height: 89px;
+    border-radius: 20px;
+    background: white;
+    gap: 10px;
+    display: flex;
   }
   
   .value {
+    margin: 0;
     font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-weight: 500;
+    text-align: center;
   }
   
   .label, .unit {
     font-size: 14px;
+    text-align: center;
+    margin: 0;
   }
   
   .editButton {
