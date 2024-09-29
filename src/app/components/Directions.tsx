@@ -1,5 +1,4 @@
 import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
-import { defaultConfig } from "next/dist/server/config-shared";
 import { useState, useEffect } from "react";
 
 function Directions() {
