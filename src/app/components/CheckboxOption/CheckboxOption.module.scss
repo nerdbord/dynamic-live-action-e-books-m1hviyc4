@@ -1,31 +1,33 @@
 .option {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: white;
+  cursor: pointer;
+
+  input {
     display: flex;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #000;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    cursor: pointer;
-  
-    input {
-      display: flex;
-      justify-content: right;
-      margin-left: auto;
-      accent-color: #000;
-     
-    }
-  
-    .optionLabel {
-      font-size: 16px;
-    }
-  
-    &:hover {
-      background-color: #f0f0f0;
-    }
-  
-    input:checked + .optionLabel {
-      background-color: #e6e6e6;
-      border-radius: 8px;
-    }
+    justify-content: right;
+    margin-left: auto;
+    accent-color: #8150d1;
   }
-  
+
+  .optionLabel {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: left;
+  }
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  input:checked + .optionLabel {
+    background-color: #e6e6e6;
+    border-radius: 8px;
+  }
+}
