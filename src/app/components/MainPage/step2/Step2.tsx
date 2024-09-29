@@ -99,7 +99,7 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
         </div>
       </div>
 
-      <SetUpStepper progress={66} label="Setup: 2 z 3 kroków" />
+      <SetUpStepper progress={66} label="2 z 3 kroków" />
 
       <button onClick={onNext} className={styles.nextButton}>
         Wybierz budżet i preferencje

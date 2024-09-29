@@ -89,7 +89,7 @@ const Step1: React.FC<Step1Props> = ({ onNext, handleReset }) => {
         </div>
       </div>
 
-      <SetUpStepper progress={33} label="Setup: 1 z 3 kroków" />
+      <SetUpStepper progress={33} label="1 z 3 kroków" />
 
       <button onClick={onNext} className={styles.nextButton}>
         Wybierz czas
