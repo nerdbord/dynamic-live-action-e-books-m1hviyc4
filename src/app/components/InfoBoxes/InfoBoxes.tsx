@@ -20,7 +20,7 @@ const InfoBoxes: React.FC<InfoBoxesProps> = ({ data, onEdit }) => {
           <span className={styles.value}>{box.value}</span>
           <span className={styles.label}>{box.label}</span>
           <span className={styles.unit}>{box.unit}</span>
-          <button className={styles.editButton} onClick={() => onEdit(index)}>Edytuj</button>
+          {/* <button className={styles.editButton} onClick={() => onEdit(index)}>Edytuj</button> */}
         </div>
       ))}
     </div>

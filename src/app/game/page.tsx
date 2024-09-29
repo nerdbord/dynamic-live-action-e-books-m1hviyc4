@@ -24,8 +24,8 @@ export default function Home() {
 
   const stats = [
     { value: 6, label: "Zadań" },
-    { value: "4km", label: "Podróży" },
-    { value: 350, label: "EXP" },
+    { value: "4 km", label: "Podróży" },
+    { value: 16, label: "audio" },
   ];
 
   const handleEdit = (index: number) => {
@@ -69,6 +69,7 @@ export default function Home() {
             <APIProvider apiKey={"AIzaSyCvvlLvJ8yDgKup6hw6jPtHn3JGWJdS6sQ"}>
               <MapComponent />
             </APIProvider>
+            <div className={styles.header}>Plan de tour</div>
             <InfoBoxes data={data} onEdit={handleEdit} />
             <StatsBox stats={stats} />
             <ReminderButton />
