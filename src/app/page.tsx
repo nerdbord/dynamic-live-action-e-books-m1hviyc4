@@ -14,7 +14,6 @@ export default function Home(): JSX.Element {
     const savedStep = localStorage.getItem("activeStep");
     if (savedStep && !isNaN(parseInt(savedStep))) {
       const step = parseInt(savedStep);
-      // Sprawdź, czy odczytany krok jest w prawidłowym zakresie (od 0 do 3)
       if (step >= 0 && step <= 3) {
         setActiveStep(step);
       }
@@ -42,7 +41,7 @@ export default function Home(): JSX.Element {
           <Step2 onNext={() => handleSetStep(3)} handleReset={handleReset} />
         );
       case 3:
-        return <Step3 onNext={() => handleSetStep(0)} />;
+        return <Step3 handleReset={handleReset} />;
       default:
         return (
           <MainPage
