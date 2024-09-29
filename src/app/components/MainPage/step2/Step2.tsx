@@ -12,7 +12,7 @@ interface Step2Props {
 
 const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
   const [availableTime, setAvailableTime] = useState(1)
-  const [availableCash, setAvailableCash] = useState(100)
+  const [availableCash, setAvailableCash] = useState(1)
 
   return (
     <div className={styles.stepContainer}>
@@ -39,7 +39,7 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
               <div className={styles.counterButtons}>
                 <button
                   onClick={() =>
-                    setAvailableTime((prev) => Math.max(0, prev - 0.5))
+                    setAvailableTime((prev) => Math.max(0, prev - 1))
                   }
                 >
                   -
@@ -47,7 +47,7 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
 
                 <button
                   onClick={() =>
-                    setAvailableTime((prev) => Math.min(prev + 0.5, 5))
+                    setAvailableTime((prev) => Math.min(prev + 1, 5))
                   }
                 >
                   +
@@ -73,13 +73,13 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
               <div className={styles.counterButtons}>
                 <button
                   onClick={() =>
-                    setAvailableCash((prev) => Math.max(0, prev - 10))
+                    setAvailableCash((prev) => Math.max(0, prev - 1))
                   }
                 >
                   -
                 </button>
 
-                <button onClick={() => setAvailableCash((prev) => prev + 10)}>
+                <button onClick={() => setAvailableCash((prev) => prev + 1)}>
                   +
                 </button>
               </div>

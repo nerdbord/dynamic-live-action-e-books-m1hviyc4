@@ -13,6 +13,19 @@ export default function Home() {
   const [tourStarted, setTourStarted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [location, setLocation] = useState('Pobieranie lokalizacji...');
+  const [activeStep, setActiveStep] = useState<number>(0)
+
+
+  useEffect(() => {
+    const savedStep = localStorage.getItem('activeStep')
+    if (savedStep && !isNaN(parseInt(savedStep))) {
+      const step = parseInt(savedStep)
+      // Sprawdź, czy odczytany krok jest w prawidłowym zakresie (od 0 do 3)
+      if (step >= 0 && step <= 3) {
+        setActiveStep(step)
+      }
+    }
+  }, [])
 
   const data = [
     { value: 1, label: 'Lemur', unit: '' },
@@ -43,7 +56,7 @@ export default function Home() {
     const calculatedProgress = (completedTasks / totalTasks) * 100;
     setProgress(calculatedProgress);
 
-    setLocation('Sosnowiec');
+    setLocation('Kraków');
   }, []);
 
   const handleStartTour = () => {
@@ -51,7 +64,10 @@ export default function Home() {
   };
 
   const goBack = () => {
-    console.log('Powrót');
+    console.log('goBack function called');
+    localStorage.removeItem('activeStep');
+    setActiveStep(0);
+    setTourStarted(false);
   };
 
   return (
