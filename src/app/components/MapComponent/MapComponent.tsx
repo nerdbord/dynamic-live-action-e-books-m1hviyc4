@@ -50,7 +50,7 @@ function MapComponent() {
       gestureHandling={"greedy"}
       disableDefaultUI={true}
     >
-      {placesList.length>0 && <Directions places={placesList.slice(0, 6)} />}
+      {/* {placesList.length>0 && <Directions places={placesList.slice(0, 6)} />} */}
     </Map>
   );
 }

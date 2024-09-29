@@ -12,7 +12,7 @@ interface Step2Props {
 
 const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
   const [availableTime, setAvailableTime] = useState(1)
-  const [availableCash, setAvailableCash] = useState(1)
+  const [availableCash, setAvailableCash] = useState(10)
 
   return (
     <div className={styles.stepContainer}>
@@ -32,14 +32,14 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
 
       <div className={styles.lemurOptions}>
         <div className={styles.option}>
-          <h4 className={styles.optionTitle}>Dorosłych Lemurów</h4>
+          <h4 className={styles.optionTitle}>Ile masz godzin?</h4>
           <div className={styles.counter}>
             <span>{availableTime}</span>
             <div className={styles.counterButtonsContainer}>
               <div className={styles.counterButtons}>
                 <button
                   onClick={() =>
-                    setAvailableTime((prev) => Math.max(0, prev - 1))
+                    setAvailableTime((prev) => Math.max(0, prev - 0.5))
                   }
                 >
                   -
@@ -47,7 +47,7 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
 
                 <button
                   onClick={() =>
-                    setAvailableTime((prev) => Math.min(prev + 1, 5))
+                    setAvailableTime((prev) => prev + 0.5)
                   }
                 >
                   +
@@ -65,7 +65,7 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
         </div>
         <div className={styles.option}>
           <h4 className={styles.optionTitle}>
-            Baby Lemur <span>{'(do 12 lat)'}</span>
+            Jaki masz budżet?
           </h4>
           <div className={styles.counter}>
             <span>{availableCash}</span>
@@ -73,13 +73,17 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
               <div className={styles.counterButtons}>
                 <button
                   onClick={() =>
-                    setAvailableCash((prev) => Math.max(0, prev - 1))
+                    setAvailableCash((prev) => Math.max(0, prev - 10))
                   }
                 >
                   -
                 </button>
 
-                <button onClick={() => setAvailableCash((prev) => prev + 1)}>
+                <button
+                  onClick={() =>
+                    setAvailableCash((prev) => prev + 10)
+                  }
+                >
                   +
                 </button>
               </div>

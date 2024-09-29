@@ -1,7 +1,7 @@
 .progressBar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: scenter;
     height: 80px;
     border: 1px solid #000;
     border-radius: 8px;
@@ -20,6 +20,7 @@
     flex-direction: column;
     justify-content: center;
     flex: 1;
+    padding: 10px;
   }
   
   .tourText {
@@ -56,4 +57,21 @@
       color: #fff;
     }
   }
+
+    
+  .editButton {
+    background-color: white;
+    border: 1px solid black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 10px;
+  
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+  
   
