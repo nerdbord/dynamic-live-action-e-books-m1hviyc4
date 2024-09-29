@@ -7,10 +7,9 @@ import Image from 'next/image'
 
 interface Step2Props {
   onNext: () => void
-  handleReset: () => void
 }
 
-const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
+const Step2: React.FC<Step2Props> = ({ onNext }) => {
   const [availableTime, setAvailableTime] = useState(1)
   const [availableCash, setAvailableCash] = useState(10)
 
@@ -22,7 +21,7 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
           <span>Kraków</span>
           {/*TODO: */}
         </p>
-        <button className={styles.editButton} onClick={handleReset}>
+        <button className={styles.editButton} onClick={() => console.log('asd')}>
           <EditIcon />
         </button>
       </div>
