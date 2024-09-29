@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Container from "../components/Container/Container";
 import ProgressBar from "../components/ProgressBar/ProgressBar";
-import Map from "../components/Map/Map";
 import InfoBoxes from "../components/InfoBoxes/InfoBoxes";
 import StatsBox from "../components/StatsBox/StatsBox";
 import ReminderButton from "../components/ReminderButton/ReminderButton";
