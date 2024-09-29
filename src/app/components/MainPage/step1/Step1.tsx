@@ -1,86 +1,101 @@
-'use client';
-import React, { useState } from 'react';
-import Button from '../../Button/Button';
-import SetUpStepper from '../../SetUpStepper/SetUpStepper';
-import Header from '../../Header/Header';
-import styles from './Step1.module.scss';
+'use client'
+import React, { useState } from 'react'
+import SetUpStepper from '../../SetUpStepper/SetUpStepper'
+import styles from './Step1.module.scss'
+import { EditIcon } from './EditIcon'
+import Image from 'next/image'
 
 interface Step1Props {
-  onNext: () => void;
+  onNext: () => void
+  handleReset: () => void
 }
 
-const Step1: React.FC<Step1Props> = ({ onNext }) => {
-  const [extraLemurs, setExtraLemurs] = useState(0);
-  const [babyLemurs, setBabyLemurs] = useState(0);
-  const [selectedLemur, setSelectedLemur] = useState('Lemur naczelny (ja)');
-
-  const handleLocationChange = () => {
-    console.log('Change location');
-  };
+const Step1: React.FC<Step1Props> = ({ onNext, handleReset }) => {
+  const [adultLemurs, setAdultLemurs] = useState(0)
+  const [babyLemurs, setBabyLemurs] = useState(0)
 
   return (
     <div className={styles.stepContainer}>
-      <Header location={'Kraków '} onChangeLocation={handleLocationChange} />
+      <div className={styles.header}>
+        <p className={styles.tourInfo}>
+          Tour de
+          <span>Kraków</span>
+          {/*TODO: */}
+        </p>
+        <button className={styles.editButton} onClick={handleReset}>
+          <EditIcon />
+        </button>
+      </div>
 
-      <h2>Ile Lemurów, wariacie?</h2>
-      <p>Kogo zabierasz w tour ze sobą?</p>
+      <h2 className={styles.title}>Ile Lemurów, wariacie?</h2>
+      <p className={styles.subTitle}>Kogo zabierasz w tour ze sobą?</p>
 
       <div className={styles.lemurOptions}>
         <div className={styles.option}>
-          <label className={styles.radioContainer}>
-            <input
-              type="radio"
-              name="lemur"
-              value="Lemur naczelny (ja)"
-              checked={selectedLemur === 'Lemur naczelny (ja)'}
-              onChange={() => setSelectedLemur('Lemur naczelny (ja)')}
-            />
-            Lemur naczelny (ja)
-          </label>
-        </div>
-
-        <div className={styles.option}>
-          <label className={styles.radioContainer}>
-            <input
-              type="radio"
-              name="lemur"
-              value="Lemur extra"
-              checked={selectedLemur === 'Lemur extra'}
-              onChange={() => setSelectedLemur('Lemur extra')}
-            />
-            Lemur extra
-          </label>
+          <h4 className={styles.optionTitle}>Dorosłych Lemurów</h4>
           <div className={styles.counter}>
-            <button onClick={() => setExtraLemurs(Math.max(0, extraLemurs - 1))}>-</button>
-            <span>{extraLemurs}</span>
-            <button onClick={() => setExtraLemurs(extraLemurs + 1)}>+</button>
+            <span>{adultLemurs}</span>
+            <div className={styles.counterButtonsContainer}>
+              <div className={styles.counterButtons}>
+                <button
+                  onClick={() =>
+                    setAdultLemurs((prev) => Math.max(0, prev - 1))
+                  }
+                >
+                  -
+                </button>
+
+                <button onClick={() => setAdultLemurs((prev) => prev + 1)}>
+                  +
+                </button>
+              </div>
+            </div>
           </div>
+          <Image
+            src="/BigLemur.png"
+            className={styles.avatar}
+            width={84}
+            height={107}
+            alt=""
+          />
         </div>
-
         <div className={styles.option}>
-          <label className={styles.radioContainer}>
-            <input
-              type="radio"
-              name="lemur"
-              value="Baby lemurs"
-              checked={selectedLemur === 'Baby lemurs'}
-              onChange={() => setSelectedLemur('Baby lemurs')}
-            />
-            Baby lemurs
-          </label>
+          <h4 className={styles.optionTitle}>
+            Baby Lemur <span>{'(do 12 lat)'}</span>
+          </h4>
           <div className={styles.counter}>
-            <button onClick={() => setBabyLemurs(Math.max(0, babyLemurs - 1))}>-</button>
             <span>{babyLemurs}</span>
-            <button onClick={() => setBabyLemurs(babyLemurs + 1)}>+</button>
+            <div className={styles.counterButtonsContainer}>
+              <div className={styles.counterButtons}>
+                <button
+                  onClick={() => setBabyLemurs((prev) => Math.max(0, prev - 1))}
+                >
+                  -
+                </button>
+
+                <button onClick={() => setBabyLemurs((prev) => prev + 1)}>
+                  +
+                </button>
+              </div>
+            </div>
           </div>
+          <Image
+            src="/BabyLemur.png"
+            className={styles.avatar}
+            width={84}
+            height={107}
+            alt=""
+          />
         </div>
       </div>
 
       <SetUpStepper progress={33} label="Setup: 1 z 3 kroków" />
 
-      <Button onClick={onNext} variant="primary">Wybierz tam zadanie</Button>
+      <button onClick={onNext} className={styles.nextButton}>
+        Wybierz czas
+      </button>
     </div>
-  );
-};
+  )
+}
 
-export default Step1;
+export default Step1
