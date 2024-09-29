@@ -5,7 +5,7 @@ import {
   useMapsLibrary,
 } from "@vis.gl/react-google-maps";
 import { useEffect, useState } from "react";
-import Directions from "../Directions/Directions";
+// import Directions from "../Directions/Directions";
 
 function MapComponent() {
   const [placesList, setPlacesList] = useState<google.maps.places.PlaceResult[] | null>(null);
@@ -50,7 +50,7 @@ function MapComponent() {
       gestureHandling={"greedy"}
       disableDefaultUI={true}
     >
-      {placesList && placesList.length > 0 && <Directions places={placesList.slice(0, 6)} />}
+      {/* {placesList && placesList.length > 0 && <Directions places={placesList.slice(0, 6)} />} */}
     </Map>
   );
 }
