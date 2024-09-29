@@ -24,7 +24,7 @@ function Directions(props: DirectionsProps) {
     setDirectionsService(new routesLibrary.DirectionsService());
     setDirectionsRenderer(new routesLibrary.DirectionsRenderer({ map }));
   }, [routesLibrary, map]);
-
+console.log(setRouteIndex)
   // Use directions service
   useEffect(() => {
     if (!directionsService || !directionsRenderer || !places || places.length < 2) return;
@@ -73,23 +73,6 @@ function Directions(props: DirectionsProps) {
 
   return (
     <div className="directions">
-      <h2>{selected?.summary}</h2>
-      <p>
-        {leg.start_address?.split(",")[0]} to {leg.end_address?.split(",")[0]}
-      </p>
-      <p>Distance: {leg.distance?.text}</p>
-      <p>Duration: {leg.duration?.text}</p>
-
-      <h2>Other Routes</h2>
-      <ul>
-        {routes.map((route, index) => (
-          <li key={route.summary}>
-            <button onClick={() => setRouteIndex(index)}>
-              {route.summary}
-            </button>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
