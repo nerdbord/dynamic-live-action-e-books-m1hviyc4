@@ -1,7 +1,6 @@
 "use client";
 import {
   Map,
-  Marker,
   useMap,
   useMapsLibrary,
 } from "@vis.gl/react-google-maps";

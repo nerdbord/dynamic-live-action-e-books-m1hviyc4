@@ -4,7 +4,6 @@ import Button from '../Button/Button'
 import Image from 'next/image'
 import styles from './MainPage.module.scss'
 import MapComponent from '../MapComponent/MapComponent'
-import { APIProvider } from '@vis.gl/react-google-maps'
 
 interface MainPageProps {
   onStart: () => void
@@ -12,8 +11,7 @@ interface MainPageProps {
 }
 
 const MainPage: React.FC<MainPageProps> = ({
-  onStart,
-  onViewPreviousTours,
+  onStart
 }) => {
   const [city, setCity] = useState<string>('Krakow')
   const [street, setStreet] = useState<string>('ul. Rakowiecka')
