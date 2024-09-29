@@ -1,29 +1,31 @@
-'use client'
-import React, { useEffect, useState } from 'react';
-import Container from '../components/Container/Container';
-import ProgressBar from '../components/ProgressBar/ProgressBar';
-import Map from '../components/Map/Map';
-import InfoBoxes from '../components/InfoBoxes/InfoBoxes';
-import StatsBox from '../components/StatsBox/StatsBox';
-import ReminderButton from '../components/ReminderButton/ReminderButton';
-import Button from '../components/Button/Button';
-import styles from './page.module.scss';
+"use client";
+import React, { useEffect, useState } from "react";
+import Container from "../components/Container/Container";
+import ProgressBar from "../components/ProgressBar/ProgressBar";
+import Map from "../components/Map/Map";
+import InfoBoxes from "../components/InfoBoxes/InfoBoxes";
+import StatsBox from "../components/StatsBox/StatsBox";
+import ReminderButton from "../components/ReminderButton/ReminderButton";
+import Button from "../components/Button/Button";
+import styles from "./page.module.scss";
+import MapComponent from "../components/MapComponent/MapComponent";
+import { APIProvider } from "@vis.gl/react-google-maps";
 
 export default function Home() {
   const [tourStarted, setTourStarted] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [location, setLocation] = useState('Pobieranie lokalizacji...');
+  const [location, setLocation] = useState("Pobieranie lokalizacji...");
 
   const data = [
-    { value: 1, label: 'Lemur', unit: '' },
-    { value: 3, label: 'godz', unit: '' },
-    { value: 50, label: 'pln', unit: '' },
+    { value: 1, label: "Lemur", unit: "" },
+    { value: 3, label: "godz", unit: "" },
+    { value: 50, label: "pln", unit: "" },
   ];
 
   const stats = [
-    { value: 6, label: 'Zadań' },
-    { value: '4km', label: 'Podróży' },
-    { value: 350, label: 'EXP' },
+    { value: 6, label: "Zadań" },
+    { value: "4km", label: "Podróży" },
+    { value: 350, label: "EXP" },
   ];
 
   const handleEdit = (index: number) => {
@@ -38,12 +40,12 @@ export default function Home() {
       { id: 4, completed: false },
     ];
 
-    const completedTasks = tasks.filter(task => task.completed).length;
+    const completedTasks = tasks.filter((task) => task.completed).length;
     const totalTasks = tasks.length;
     const calculatedProgress = (completedTasks / totalTasks) * 100;
     setProgress(calculatedProgress);
 
-    setLocation('Sosnowiec');
+    setLocation("Sosnowiec");
   }, []);
 
   const handleStartTour = () => {
@@ -51,7 +53,7 @@ export default function Home() {
   };
 
   const goBack = () => {
-    console.log('Powrót');
+    console.log("Powrót");
   };
 
   return (
@@ -59,8 +61,14 @@ export default function Home() {
       <Container>
         {!tourStarted ? (
           <>
-            <ProgressBar progress={progress} location={location} onExit={goBack} />
-            <Map />
+            <ProgressBar
+              progress={progress}
+              location={location}
+              onExit={goBack}
+            />
+            <APIProvider apiKey={"AIzaSyCvvlLvJ8yDgKup6hw6jPtHn3JGWJdS6sQ"}>
+              <MapComponent />
+            </APIProvider>
             <InfoBoxes data={data} onEdit={handleEdit} />
             <StatsBox stats={stats} />
             <ReminderButton />
@@ -71,10 +79,19 @@ export default function Home() {
         ) : (
           <>
             {/* Nowy widok, który jest widoczny po prawej stronie na zrzucie ekranu */}
-            <ProgressBar progress={progress} location={location} onExit={goBack} />
+            <ProgressBar
+              progress={progress}
+              location={location}
+              onExit={goBack}
+            />
             <div className={styles.tourHeader}>
-              <Button onClick={() => console.log('Wyjdź')} variant="secondary">Wyjdź</Button>
-              <Button onClick={() => console.log('Otwórz transkrypcję')} variant="secondary">
+              <Button onClick={() => console.log("Wyjdź")} variant="secondary">
+                Wyjdź
+              </Button>
+              <Button
+                onClick={() => console.log("Otwórz transkrypcję")}
+                variant="secondary"
+              >
                 Otwórz transkrypcję
               </Button>
             </div>
@@ -82,7 +99,10 @@ export default function Home() {
             <div className={styles.tourStep}>
               <h3>SPACEREK NA RYNACZEK</h3>
               <p>Przejdź do [miejsce] [X] m.</p>
-              <Button onClick={() => console.log('Następny krok')} variant="primary">
+              <Button
+                onClick={() => console.log("Następny krok")}
+                variant="primary"
+              >
                 Następny krok
               </Button>
             </div>

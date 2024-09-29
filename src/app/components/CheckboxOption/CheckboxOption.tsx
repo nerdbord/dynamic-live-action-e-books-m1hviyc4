@@ -11,6 +11,7 @@ interface CheckboxOptionProps {
 const CheckboxOption: React.FC<CheckboxOptionProps> = ({ value, label, checked, onChange }) => {
   return (
     <label className={styles.option}>
+          <span className={styles.optionLabel}>{label}</span>
       <input
         type="checkbox"
         value={value}
@@ -18,7 +19,7 @@ const CheckboxOption: React.FC<CheckboxOptionProps> = ({ value, label, checked, 
         onChange={() => onChange(value)}
         className={styles.checkboxInput}
       />
-      <span className={styles.optionLabel}>{label}</span>
+  
     </label>
   );
 };
