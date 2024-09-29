@@ -6,10 +6,9 @@ interface ProgressBarProps {
   progress: number;
   location: string;
   onExit: () => void;
-  handleReset: () => void
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ progress, handleReset, location, onExit }) => {
+const ProgressBar: React.FC<ProgressBarProps> = ({ progress, location, onExit }) => {
   return (
     <div className={styles.progressBar}>
       {/* <img src="/Media.png" alt="Logo" className={styles.logo} /> */}
@@ -19,7 +18,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress, handleReset, locati
           <div className={styles.progress} style={{ width: `${progress}%` }} />
         </div>
       </div>
-      <button className={styles.editButton} onClick={handleReset}>
+      <button className={styles.editButton} onClick={onExit}>
           <EditIcon />
         </button>
     </div>
