@@ -9,7 +9,9 @@ interface SetUpStepperProps {
 const SetUpStepper: React.FC<SetUpStepperProps> = ({ progress, label }) => {
   return (
     <div className={styles.stepperContainer}>
+      <div className={styles.empty}>
       <div className={styles.stepperBar} style={{ width: `${progress}%` }}></div>
+      </div>
       <div className={styles.label}>{label}</div>
     </div>
   );

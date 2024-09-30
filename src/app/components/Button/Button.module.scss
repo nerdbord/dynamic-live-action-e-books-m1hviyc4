@@ -6,10 +6,19 @@
 }
 
 .primary {
+  padding: 18px 40px;
+  background: #3b3850;
   border-radius: 42px;
-  background: #3B3850;
+  text-align: center;
   color: white;
-  width: 90%;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  margin: 0;
+  width: min-content;
+  word-break: keep-all;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .secondary {
@@ -17,3 +26,4 @@
   color: black;
   border: 1px solid black;
 }
+

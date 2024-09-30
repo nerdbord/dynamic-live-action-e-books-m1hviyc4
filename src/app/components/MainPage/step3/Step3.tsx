@@ -5,6 +5,8 @@ import CheckboxOption from '../../CheckboxOption/CheckboxOption'
 import styles from './Step3.module.scss'
 import SetUpStepper from '../../SetUpStepper/SetUpStepper'
 import { EditIcon } from '../step1/EditIcon'
+import Container from '../../Container/Container'
+import Button from '../../Button/Button'
 
 
 const Step3: React.FC = () => {
@@ -25,6 +27,7 @@ const Step3: React.FC = () => {
 
   return (
     <div className={styles.stepContainer}>
+      <Container>
       <div className={styles.header}>
         <p className={styles.tourInfo}>
           Tour de
@@ -36,11 +39,11 @@ const Step3: React.FC = () => {
         </button>
       </div>
 
-      <h2 className={styles.title}>Ostatnie kwestie</h2>
+      <div className={styles.title}>Ostatnie kwestie</div>
       <p className={styles.subTitle}>Dotyczące Twoich preferencji</p>
 
       {/* Preferencje */}
-
+      <div className={styles.preferences}>
       <CheckboxOption
         value="accessible"
         label="Tylko miejsca  przystosowane dla osób z niepełnosprawnością ruchową"
@@ -59,11 +62,15 @@ const Step3: React.FC = () => {
         checked={preferences.includes('noFood')}
         onChange={handleCheckboxChange}
       />
+      </div>
 
       <SetUpStepper progress={100} label="3 z 3 kroków" />
-      <button onClick={onNext} className={styles.nextButton}>
+
+      <Button onClick={onNext} variant="primary" className={styles.nextButton}>
         Let’s goooooooo
-      </button>
+      </Button>
+      </Container>
+
     </div>
   )
 }
