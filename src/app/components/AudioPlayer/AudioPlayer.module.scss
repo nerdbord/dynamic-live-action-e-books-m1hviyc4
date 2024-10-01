@@ -70,3 +70,15 @@
 .timeSlider {
   flex-grow: 1;
 }
+
+.colorTransition {
+  transition: color 300ms ease-in-out;
+}
+
+.textStandard {
+  color: #64748b;
+}
+
+.textHighlighted {
+  color: orange;
+}

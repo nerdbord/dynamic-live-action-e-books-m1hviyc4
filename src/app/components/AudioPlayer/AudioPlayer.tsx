@@ -1,53 +1,122 @@
 'use client'
 // AudioStream.tsx
 import React, { useState, useRef, useEffect } from 'react'
-import axios from 'axios'
 import styles from './AudioPlayer.module.scss'
 
 import { ForwardIcon } from './ForwardIcon'
 import { BackIcon } from './BackIcon'
 import { PauseIcon } from './PauseIcon'
-interface VoiceSettings {
-  stability: number
-  similarity_boost: number
+
+type AudioData = {
+  audio_base64: ArrayBuffer
+  alignment: {
+    characters: string[]
+    character_start_times_seconds: number[]
+    character_end_times_seconds: number[]
+  }
+  normalized_alignment: {
+    characters: string[]
+    character_start_times_seconds: number[]
+    character_end_times_seconds: number[]
+  }
 }
 
 interface AudioPlayerProps {
-  voiceId?: string
   text: string
-  apiKey: string //TODO:
-  voiceSettings: VoiceSettings
 }
 
-export const AudioPlayer: React.FC<AudioPlayerProps> = ({
-  voiceId = 'JBFqnCBsd6RMkjVDRZzb',
-  text,
-  apiKey,
-  voiceSettings,
-}) => {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
-  const [audioState, setAudioState] = useState('')
-  const audioRef = useRef<HTMLAudioElement>(null)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [duration, setDuration] = useState(0)
+export const AudioPlayer = ({ text }: AudioPlayerProps) => {
+  const [isLoading, setIsLoading] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [characters, setCharacters] = useState(['TEST'])
+  const [startTimings, setStartTimings] = useState([0])
+  const [endTimings, setEndTimings] = useState([0])
+  const audioRef = useRef<null | HTMLAudioElement>(null)
+  const [highlightedText, setHighlightedText] = useState<JSX.Element[]>([])
 
   useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-    const setAudioData = () => {
-      setDuration(audio.duration)
-      setCurrentTime(audio.currentTime)
+    const updateHighlight = () => {
+      const newHighlightedText = []
+      let currentSentence = ''
+      let isHighlighted = false
+
+      for (let i = 0; i < characters.length; i++) {
+        const char = characters[i]
+        const startTime = startTimings[i]
+        const endTime = endTimings[i]
+
+        if (currentTime >= startTime && currentTime <= endTime) {
+          isHighlighted = true
+        }
+
+        currentSentence += char
+
+        if (
+          ['.', ',', '!', '?'].includes(char) ||
+          i === characters.length - 1
+        ) {
+          newHighlightedText.push(
+            <span
+              key={i}
+              className={`${styles.colorTransition} ${
+                isHighlighted ? styles.textHighlighted : styles.textStandard
+              }`}
+            >
+              {currentSentence}
+            </span>,
+          )
+          currentSentence = ''
+          isHighlighted = false
+        }
+      }
+
+      setHighlightedText(newHighlightedText)
     }
-    const setAudioTime = () => setCurrentTime(audio.currentTime)
-    audio.addEventListener('loadeddata', setAudioData)
-    audio.addEventListener('timeupdate', setAudioTime)
-    return () => {
-      audio.removeEventListener('loadeddata', setAudioData)
-      audio.removeEventListener('timeupdate', setAudioTime)
+
+    const interval = setInterval(updateHighlight, 100)
+
+    return () => clearInterval(interval)
+  }, [currentTime, characters, startTimings, endTimings])
+
+  const generateAndPlaySpeech = async () => {
+    setIsLoading(true)
+    try {
+      const response = await fetch('/api/generateVoiceWithTimestamps', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      const data: AudioData = await response.json()
+
+      if (audioRef.current) {
+        audioRef.current.src = `data:audio/mp3;base64,${data.audio_base64}`
+        audioRef.current.play()
+      }
+
+      setCharacters(data.alignment.characters)
+      setStartTimings(data.alignment.character_start_times_seconds)
+      setEndTimings(data.alignment.character_end_times_seconds)
+    } catch (error) {
+      console.error('Error generating speech:', error)
+    } finally {
+      setIsLoading(false)
     }
-  }, [])
+  }
+  const handleTimeUpdate = () => {
+    if (audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime)
+    }
+  }
 
   const togglePlayPause = () => {
     const audio = audioRef.current
@@ -59,15 +128,6 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       audio.play()
     }
     setIsPlaying(!isPlaying)
-  }
-
-  const handleTimeUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    const time = parseFloat(e.target.value)
-    audio.currentTime = time
-    setCurrentTime(time)
   }
 
   const handleTimeSubtract = () => {
@@ -101,60 +161,16 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     audio.play()
   }
 
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60)
-    const seconds = Math.floor(time % 60)
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`
-  }
-  const startStreaming = async () => {
-    setLoading(true)
-    setError('')
-
-    const baseUrl = 'https://api.elevenlabs.io/v1/text-to-speech'
-    const headers = {
-      'Content-Type': 'application/json',
-      'xi-api-key': apiKey,
-    }
-
-    const requestBody = {
-      text,
-      voice_settings: voiceSettings,
-      model_id: 'eleven_turbo_v2_5',
-      language_code: 'pl',
-      style: 0.3,
-    }
-
-    try {
-      const response = await axios.post(`${baseUrl}/${voiceId}`, requestBody, {
-        headers,
-        responseType: 'blob',
-      })
-
-      if (response.status === 200) {
-        // const audio = new Audio(URL.createObjectURL(response.data))
-        setAudioState(URL.createObjectURL(response.data))
-        // audio.play() // auto play
-      } else {
-        setError('Error: Unable to stream audio.')
-      }
-    } catch (error) {
-      setError(`Error: Unable to stream audio. ${error}`)
-    } finally {
-      setLoading(false)
-    }
-  }
-
   return (
     <div>
       <button
-        onClick={startStreaming}
-        disabled={loading}
+        onClick={generateAndPlaySpeech}
+        disabled={isLoading}
         className={styles.startGenre}
       >
         Start Generate
       </button>
-      {error && <p className="error-message">{error}</p>}
-
+      {/* {error && <p className="error-message">{error}</p>} */}
       <div className={styles.audioPlayer}>
         <div className={`${styles.liveControl} ${isPlaying && styles.active}`}>
           <div
@@ -162,7 +178,12 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           ></div>
           <p>LIVE AUDIO GUIDE</p>
         </div>
-        <audio ref={audioRef} src={audioState} />
+        <audio
+          ref={audioRef}
+          onTimeUpdate={handleTimeUpdate}
+          onPlay={() => setIsPlaying(true)}
+          onEnded={() => setIsPlaying(false)}
+        />
         <div className={styles.controls}>
           <button
             className={`${styles.controlButton} ${styles.controlButton}`}
@@ -183,24 +204,8 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
             <ForwardIcon />
           </button>
         </div>
-        <div className={styles.timeControl}>
-          <span className={styles.timeDisplay}>{formatTime(currentTime)}</span>
-          <input
-            type="range"
-            min="0"
-            max={duration}
-            value={currentTime}
-            onChange={handleTimeUpdate}
-            className="time-slider"
-          />
-          <span className={styles.timeDisplay}>{formatTime(duration)}</span>
-        </div>
       </div>
-
-      <audio>
-        <source src={audioState} type="audio/ogg" />
-        Test
-      </audio>
+      <div>{highlightedText}</div>
     </div>
   )
 }
