@@ -5,11 +5,9 @@ import CheckboxOption from '../../CheckboxOption/CheckboxOption'
 import styles from './Step3.module.scss'
 import SetUpStepper from '../../SetUpStepper/SetUpStepper'
 import { EditIcon } from '../step1/EditIcon'
-interface Step3Props {
-  handleReset: () => void
-}
 
-const Step3: React.FC<Step3Props> = ({ handleReset }) => {
+
+const Step3: React.FC = () => {
   const [preferences, setPreferences] = useState<string[]>([])
   const router = useRouter() // Inicjalizacja routera
 
@@ -22,7 +20,7 @@ const Step3: React.FC<Step3Props> = ({ handleReset }) => {
   }
 
   const onNext = () => {
-    router.push('/game') // Przeniesienie użytkownika do ścieżki "/games"
+    router.push('/game')
   }
 
   return (
@@ -33,7 +31,7 @@ const Step3: React.FC<Step3Props> = ({ handleReset }) => {
           <span>Kraków</span>
           {/*TODO: */}
         </p>
-        <button className={styles.editButton} onClick={handleReset}>
+        <button className={styles.editButton} onClick={() => console.log('asd')}>
           <EditIcon />
         </button>
       </div>
@@ -62,7 +60,7 @@ const Step3: React.FC<Step3Props> = ({ handleReset }) => {
         onChange={handleCheckboxChange}
       />
 
-      <SetUpStepper progress={100} label="Setup: 3 z 3 kroków" />
+      <SetUpStepper progress={100} label="3 z 3 kroków" />
       <button onClick={onNext} className={styles.nextButton}>
         Let’s goooooooo
       </button>

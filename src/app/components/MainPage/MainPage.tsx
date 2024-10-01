@@ -7,12 +7,9 @@ import MapComponent from '../MapComponent/MapComponent'
 
 interface MainPageProps {
   onStart: () => void
-  onViewPreviousTours: () => void
 }
 
-const MainPage: React.FC<MainPageProps> = ({
-  onStart
-}) => {
+const MainPage: React.FC<MainPageProps> = ({ onStart }) => {
   const [city, setCity] = useState<string>('Krakow')
   const [street, setStreet] = useState<string>('ul. Rakowiecka')
 

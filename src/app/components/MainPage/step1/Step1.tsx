@@ -7,10 +7,9 @@ import Image from 'next/image'
 
 interface Step1Props {
   onNext: () => void
-  handleReset: () => void
 }
 
-const Step1: React.FC<Step1Props> = ({ onNext, handleReset }) => {
+const Step1: React.FC<Step1Props> = ({ onNext }) => {
   const [adultLemurs, setAdultLemurs] = useState(0)
   const [babyLemurs, setBabyLemurs] = useState(0)
 
@@ -22,7 +21,7 @@ const Step1: React.FC<Step1Props> = ({ onNext, handleReset }) => {
           <span>Kraków</span>
           {/*TODO: */}
         </p>
-        <button className={styles.editButton} onClick={handleReset}>
+        <button className={styles.editButton} onClick={() => console.log('asd')}>
           <EditIcon />
         </button>
       </div>
@@ -89,7 +88,7 @@ const Step1: React.FC<Step1Props> = ({ onNext, handleReset }) => {
         </div>
       </div>
 
-      <SetUpStepper progress={33} label="Setup: 1 z 3 kroków" />
+      <SetUpStepper progress={33} label="1 z 3 kroków" />
 
       <button onClick={onNext} className={styles.nextButton}>
         Wybierz czas

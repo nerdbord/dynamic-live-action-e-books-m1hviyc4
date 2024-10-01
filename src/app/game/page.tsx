@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Container from "../components/Container/Container";
 import ProgressBar from "../components/ProgressBar/ProgressBar";
-import Map from "../components/Map/Map";
 import InfoBoxes from "../components/InfoBoxes/InfoBoxes";
 import StatsBox from "../components/StatsBox/StatsBox";
 import ReminderButton from "../components/ReminderButton/ReminderButton";
@@ -24,8 +23,8 @@ export default function Home() {
 
   const stats = [
     { value: 6, label: "Zadań" },
-    { value: "4km", label: "Podróży" },
-    { value: 350, label: "EXP" },
+    { value: "4 km", label: "Podróży" },
+    { value: 16, label: "audio" },
   ];
 
   const handleEdit = (index: number) => {
@@ -45,7 +44,7 @@ export default function Home() {
     const calculatedProgress = (completedTasks / totalTasks) * 100;
     setProgress(calculatedProgress);
 
-    setLocation("Sosnowiec");
+    setLocation("Kraków");
   }, []);
 
   const handleStartTour = () => {
@@ -69,6 +68,7 @@ export default function Home() {
             <APIProvider apiKey={"AIzaSyCvvlLvJ8yDgKup6hw6jPtHn3JGWJdS6sQ"}>
               <MapComponent />
             </APIProvider>
+            <div className={styles.header}>Plan de tour</div>
             <InfoBoxes data={data} onEdit={handleEdit} />
             <StatsBox stats={stats} />
             <ReminderButton />
@@ -78,7 +78,6 @@ export default function Home() {
           </>
         ) : (
           <>
-            {/* Nowy widok, który jest widoczny po prawej stronie na zrzucie ekranu */}
             <ProgressBar
               progress={progress}
               location={location}
@@ -95,7 +94,9 @@ export default function Home() {
                 Otwórz transkrypcję
               </Button>
             </div>
-            <Map />
+            <APIProvider apiKey={"AIzaSyCvvlLvJ8yDgKup6hw6jPtHn3JGWJdS6sQ"}>
+              <MapComponent />
+            </APIProvider>
             <div className={styles.tourStep}>
               <h3>SPACEREK NA RYNACZEK</h3>
               <p>Przejdź do [miejsce] [X] m.</p>

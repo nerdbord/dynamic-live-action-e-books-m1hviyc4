@@ -7,12 +7,11 @@ import Image from 'next/image'
 
 interface Step2Props {
   onNext: () => void
-  handleReset: () => void
 }
 
-const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
+const Step2: React.FC<Step2Props> = ({ onNext }) => {
   const [availableTime, setAvailableTime] = useState(1)
-  const [availableCash, setAvailableCash] = useState(100)
+  const [availableCash, setAvailableCash] = useState(10)
 
   return (
     <div className={styles.stepContainer}>
@@ -22,7 +21,7 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
           <span>Kraków</span>
           {/*TODO: */}
         </p>
-        <button className={styles.editButton} onClick={handleReset}>
+        <button className={styles.editButton} onClick={() => console.log('asd')}>
           <EditIcon />
         </button>
       </div>
@@ -32,7 +31,7 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
 
       <div className={styles.lemurOptions}>
         <div className={styles.option}>
-          <h4 className={styles.optionTitle}>Dorosłych Lemurów</h4>
+          <h4 className={styles.optionTitle}>Ile masz godzin?</h4>
           <div className={styles.counter}>
             <span>{availableTime}</span>
             <div className={styles.counterButtonsContainer}>
@@ -47,7 +46,7 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
 
                 <button
                   onClick={() =>
-                    setAvailableTime((prev) => Math.min(prev + 0.5, 5))
+                    setAvailableTime((prev) => prev + 0.5)
                   }
                 >
                   +
@@ -65,7 +64,7 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
         </div>
         <div className={styles.option}>
           <h4 className={styles.optionTitle}>
-            Baby Lemur <span>{'(do 12 lat)'}</span>
+            Jaki masz budżet?
           </h4>
           <div className={styles.counter}>
             <span>{availableCash}</span>
@@ -79,7 +78,11 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
                   -
                 </button>
 
-                <button onClick={() => setAvailableCash((prev) => prev + 10)}>
+                <button
+                  onClick={() =>
+                    setAvailableCash((prev) => prev + 10)
+                  }
+                >
                   +
                 </button>
               </div>
@@ -95,7 +98,7 @@ const Step2: React.FC<Step2Props> = ({ onNext, handleReset }) => {
         </div>
       </div>
 
-      <SetUpStepper progress={66} label="Setup: 2 z 3 kroków" />
+      <SetUpStepper progress={66} label="2 z 3 kroków" />
 
       <button onClick={onNext} className={styles.nextButton}>
         Wybierz budżet i preferencje
