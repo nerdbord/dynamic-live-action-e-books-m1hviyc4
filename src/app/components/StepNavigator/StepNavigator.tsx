@@ -4,6 +4,7 @@ import Step1 from "../MainPage/step1/Step1"
 import Step2 from "../MainPage/step2/Step2"
 import Step3 from "../MainPage/step3/Step3"
 import MainPage from "../MainPage/MainPage"
+import { APIProvider } from "@vis.gl/react-google-maps";
 
 export default function StepNavigator() {
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -15,5 +16,9 @@ export default function StepNavigator() {
     <Step3 />,
   ];
 
-  return <>{steps[activeStep]}</>;
+  return (
+    <APIProvider apiKey={"AIzaSyCvvlLvJ8yDgKup6hw6jPtHn3JGWJdS6sQ"}>
+      {steps[activeStep]}
+    </APIProvider>
+  );
 }
