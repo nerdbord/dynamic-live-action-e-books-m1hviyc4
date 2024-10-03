@@ -4,6 +4,8 @@ import SetUpStepper from '../../SetUpStepper/SetUpStepper'
 import styles from './Step2.module.scss'
 import { EditIcon } from '../step1/EditIcon'
 import Image from 'next/image'
+import Container from '../../Container/Container'
+import Button from '../../Button/Button'
 
 interface Step2Props {
   onNext: () => void
@@ -15,6 +17,7 @@ const Step2: React.FC<Step2Props> = ({ onNext }) => {
 
   return (
     <div className={styles.stepContainer}>
+      <Container>
       <div className={styles.header}>
         <p className={styles.tourInfo}>
           Tour de
@@ -100,9 +103,11 @@ const Step2: React.FC<Step2Props> = ({ onNext }) => {
 
       <SetUpStepper progress={66} label="2 z 3 kroków" />
 
-      <button onClick={onNext} className={styles.nextButton}>
-        Wybierz budżet i preferencje
-      </button>
+      <Button onClick={onNext} variant="primary" className={styles.nextButton}>
+      Wybierz budżet i preferencje
+      </Button>
+      </Container>
+    
     </div>
   )
 }

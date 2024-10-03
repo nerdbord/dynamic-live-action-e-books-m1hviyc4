@@ -4,6 +4,8 @@ import SetUpStepper from '../../SetUpStepper/SetUpStepper'
 import styles from './Step1.module.scss'
 import { EditIcon } from './EditIcon'
 import Image from 'next/image'
+import Container from '../../Container/Container'
+import Button from '../../Button/Button'
 
 interface Step1Props {
   onNext: () => void
@@ -15,6 +17,7 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
 
   return (
     <div className={styles.stepContainer}>
+      <Container>
       <div className={styles.header}>
         <p className={styles.tourInfo}>
           Tour de
@@ -26,7 +29,7 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
         </button>
       </div>
 
-      <h2 className={styles.title}>Ile Lemurów, wariacie?</h2>
+      <div className={styles.title}>Ile Lemurów, wariacie?</div>
       <p className={styles.subTitle}>Kogo zabierasz w tour ze sobą?</p>
 
       <div className={styles.lemurOptions}>
@@ -90,9 +93,10 @@ const Step1: React.FC<Step1Props> = ({ onNext }) => {
 
       <SetUpStepper progress={33} label="1 z 3 kroków" />
 
-      <button onClick={onNext} className={styles.nextButton}>
-        Wybierz czas
-      </button>
+      <Button onClick={onNext} variant="primary" className={styles.nextButton}>
+      Wybierz czas
+      </Button>
+      </Container>
     </div>
   )
 }

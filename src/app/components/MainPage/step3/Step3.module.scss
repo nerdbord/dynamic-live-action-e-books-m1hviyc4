@@ -51,7 +51,7 @@
   font-size: 29px;
   font-weight: 600;
   line-height: 40px;
-  text-align: left;
+  align-self: flex-start;
   margin: 0;
   color: #1e293b;
 }
@@ -60,7 +60,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
-  text-align: left;
+  align-self: flex-start;
   margin: 0%;
   color: black;
   margin-bottom: 31px;
@@ -105,4 +105,8 @@
   word-break: keep-all;
   align-self: center;
   white-space: nowrap;
+}
+
+.preferences {
+  margin-bottom: 52px;;
 }

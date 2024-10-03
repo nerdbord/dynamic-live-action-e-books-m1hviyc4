@@ -4,6 +4,7 @@ import Button from '../Button/Button'
 import Image from 'next/image'
 import styles from './MainPage.module.scss'
 import MapComponent from '../MapComponent/MapComponent'
+import Container from '../Container/Container'
 
 interface MainPageProps {
   onStart: () => void
@@ -23,6 +24,7 @@ const MainPage: React.FC<MainPageProps> = ({ onStart }) => {
 
   return (
     <div className={styles.appContainer}>
+      <Container>
       <header className={styles.profileHeader}>
         <div className={styles.profileIcon}>
           <Image src="/Lemur.png" alt="Profile Icon" width={117} height={117} />
@@ -78,6 +80,7 @@ const MainPage: React.FC<MainPageProps> = ({ onStart }) => {
           Zaczynamy Tour
         </Button>
       </div>
+      </Container>
     </div>
   )
 }
