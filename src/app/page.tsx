@@ -1,3 +1,4 @@
+'use client'
 import StepNavigator from "./components/StepNavigator/StepNavigator"
 import { APIProvider } from "@vis.gl/react-google-maps";
 
